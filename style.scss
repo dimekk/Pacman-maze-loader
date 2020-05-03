@@ -1,0 +1,161 @@
+$mazeColor: #2121de;
+$playerColor: #f8f800;
+$foodColor: #f8f8f8;
+
+body {
+    width: 100%;
+    background: #000;
+
+    .loader {
+        width: 353px;
+        height: 5px;
+        position: fixed;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        .upper-bar,
+        .lower-bar {
+            width: 100%;
+            height: 15px;
+            border-top: 2px solid $mazeColor;
+            border-bottom: 2px solid $mazeColor;
+            border-left: none;
+            border-right: none;
+        }
+
+        .upper-bar {
+            margin-top: -35px;
+        }
+
+        .lower-bar {
+            margin-top: 90px;
+        }
+
+        .pacman-container {
+            position: fixed;
+            top: 50%;
+            left: 43%;
+            transform: translate(-50%, -50%);
+
+            .food {
+                position: absolute;
+                left: -5px;
+                top: 0;
+                height: 60px;
+                width: 180px;
+                animation: food 0.3s infinite linear;
+
+                span {
+                    position: absolute;
+                    top: 25px;
+                    height: 12px;
+                    width: 12px;
+                    border-radius: 12px;
+                    background-color: $foodColor
+                }
+
+                .st {
+                    right: 80px;
+                }
+
+                .nd {
+                    right: 40px;
+                }
+
+                .rd {
+                    right: 0px;
+                }
+                .th {
+                    right: -40px;
+                }
+            }
+
+            .pacman {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 60px;
+                width: 60px;
+
+                span {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 60px;
+                    width: 60px;
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        height: 30px;
+                        width: 60px;
+                        background-color: $playerColor;
+                    }
+                }
+
+                .top {
+                    animation: top 0.3s infinite;
+
+                    &::before {
+                        top: 0;
+                        border-radius: 60px 60px 0px 0px;
+                    }
+                }
+
+                .bottom {
+                    animation: bottom 0.3s infinite;
+
+                    &::before {
+                        bottom: 0;
+                        border-radius: 0px 0px 60px 60px;
+                    }
+                }
+
+                .left {
+                    &::before {
+                        bottom: 0;
+                        height: 60px;
+                        width: 30px;
+                        border-radius: 60px 0px 0px 60px;
+                    }
+                }
+            }
+        }
+
+        @keyframes food {
+            0% {
+                transform: translate(0px, 0px);
+            }
+
+            100% {
+                transform: translate(-40px, 0px);
+            }
+        }
+
+        @keyframes top {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(-45deg);
+            }
+        }
+
+        @keyframes bottom {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(45deg);
+            }
+        }
+    }
+}
